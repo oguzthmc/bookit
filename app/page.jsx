@@ -8,7 +8,6 @@ export default function Home() {
       <Heading title="Available Rooms" />
       {rooms.length > 0 ? (
         rooms.map((room) => {
-          console.log("Room data:", room);
           return <RoomCard room={room} />;
         })
       ) : (
