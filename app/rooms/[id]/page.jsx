@@ -1,13 +1,13 @@
-import BookingForm from "@/components/BookingForm";
-import Heading from "@/components/Heading";
-import rooms from "@/data/rooms.json";
-import Image from "next/image";
-import Link from "next/link";
-import { FaChevronLeft } from "react-icons/fa";
+import getSingleRoom from '@/app/actions/getSingleRoom';
+import BookingForm from '@/components/BookingForm';
+import Heading from '@/components/Heading';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaChevronLeft } from 'react-icons/fa';
 
-const RoomPage = ({ params }) => {
+const RoomPage = async ({ params }) => {
   const { id } = params;
-  const room = rooms.find((room) => room.$id === id);
+  const room = await getSingleRoom(id);
 
   if (!room) {
     return <Heading title="Room Not Found" />;
@@ -39,7 +39,7 @@ const RoomPage = ({ params }) => {
 
             <ul className="space-y-2">
               <li>
-                <span className="font-semibold text-gray-800">Size:</span>{" "}
+                <span className="font-semibold text-gray-800">Size:</span>{' '}
                 {room.sqft}
                 sq ft
               </li>
@@ -54,7 +54,7 @@ const RoomPage = ({ params }) => {
                 {room.price_per_hour}/hour
               </li>
               <li>
-                <span className="font-semibold text-gray-800">Address:</span>{" "}
+                <span className="font-semibold text-gray-800">Address:</span>{' '}
                 {room.address}
               </li>
             </ul>
